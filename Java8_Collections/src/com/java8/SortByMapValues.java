@@ -14,7 +14,7 @@ public class SortByMapValues {
 
 
 	//implementation of HashMap  
-	Map<String, Integer> map = new HashMap<String, Integer>();  
+	Map<String, String> map = new HashMap<String, String>();  
 	public static void main(String[] args)   
 	{     
 		SortByMapValues sv = new SortByMapValues();  
@@ -27,15 +27,22 @@ public class SortByMapValues {
 	//method to add elements in the HashMap  
 	void createMap()   
 	{  
-		map.put("Apple", 65000);  
-		map.put("HP", 20000);  
-		map.put("Dell", 32000);  
-		map.put("Asus", 21478);  
-		map.put("Samsung", 36546);  
-		map.put("Lenovo", 19990);  
+//		map.put("Apple", 65000);  
+//		map.put("HP", 20000);  
+//		map.put("Dell", 32000);  
+//		map.put("Asus", 21478);  
+//		map.put("Samsung", 36546);  
+//		map.put("Lenovo", 19990); 
+		
+		map.put("Apple", "kani");  
+		map.put("HP", "hij");  
+		map.put("Dell", "fgh");  
+		map.put("Asus", "adg");  
+//		map.put("Samsung", 36546);  
+//		map.put("Lenovo", 19990);
 		System.out.println("Before sorting: ");  
-		Map<String, Integer> sortedMap = map.entrySet().stream()
-		        .sorted(Comparator.comparingInt(e -> e.getValue()))
+		Map<String, String> sortedMap = map.entrySet().stream()
+		        .sorted(Comparator.comparing(e -> e.getValue()))
 		        .collect(Collectors.toMap(
 		                Map.Entry::getKey,
 		                Map.Entry::getValue,
@@ -43,14 +50,14 @@ public class SortByMapValues {
 		                LinkedHashMap::new
 		        ));
 		
-		LinkedHashMap<String, Integer> map2 = 
+		LinkedHashMap<String, String> map2 = 
 			    map.entrySet()
 			       .stream()             
 			       .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 			       .collect(Collectors.toMap(e -> e.getKey(), 
 			                                 e -> e.getValue(), 
 			                                 (e1, e2) -> null, // or throw an exception
-			                                 () -> new LinkedHashMap<String, Integer>()));
+			                                 () -> new LinkedHashMap<String, String>()));
 
 		sortedMap.entrySet().forEach(System.out::println);
 		map2.entrySet().forEach(System.out::println);
@@ -61,11 +68,11 @@ public class SortByMapValues {
 	void sortByValue(boolean order)   
 	{  
 		//convert HashMap into List   
-		List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(map.entrySet());  
+		List<Entry<String, String>> list = new LinkedList<Entry<String, String>>(map.entrySet());  
 		//sorting the list elements  
-		Collections.sort(list, new Comparator<Entry<String, Integer>>()   
+		Collections.sort(list, new Comparator<Entry<String, String>>()   
 		{  
-			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2)   
+			public int compare(Entry<String, String> o1, Entry<String, String> o2)   
 			{  
 				if (order)   
 				{  
@@ -78,18 +85,18 @@ public class SortByMapValues {
 			}  
 		});  
 		//prints the sorted HashMap  
-		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();  
-		for (Entry<String, Integer> entry : list)   
+		Map<String, String> sortedMap = new LinkedHashMap<String, String>();  
+		for (Entry<String, String> entry : list)   
 		{  
 			sortedMap.put(entry.getKey(), entry.getValue());  
 		}  
 		printMap(sortedMap);  
 	}  
 	//method for printing the elements  
-	public void printMap(Map<String, Integer> map)   
+	public void printMap(Map<String, String> map)   
 	{  
 		System.out.println("Company\t Price ");  
-		for (Entry<String, Integer> entry : map.entrySet())   
+		for (Entry<String, String> entry : map.entrySet())   
 		{  
 			System.out.println(entry.getKey() +"\t"+entry.getValue());  
 		}  

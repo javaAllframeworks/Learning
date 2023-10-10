@@ -16,7 +16,7 @@ static int getPairsCount(int[] arr, int n, int target)
             if (map.containsKey(target - arr[i]))
             {
                 pairs += map.get(target - arr[i]);
-            System.out.println("..."+(target - arr[i]));
+            //System.out.println("..."+(target - arr[i]));
                 for (int j=1; j<=map.get(target - arr[i]); j++)
                     System.out.print("(" + (target-arr[i]) + "," + arr[i] + ") ");
             }
